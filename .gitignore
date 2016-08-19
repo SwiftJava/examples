@@ -1,0 +1,4 @@
+Packages/
+.build/
+*.bin
+*.a
