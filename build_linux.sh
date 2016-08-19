@@ -7,7 +7,7 @@ export CONFIG=${1:-debug}
 export SWIFT_HOME=~/swift-3.0-PREVIEW-6-ubuntu15.10
 export JVM_LIBRARY_PATH=$JAVA_HOME/lib/amd64/server
 
-time $SWIFT_HOME/usr/bin/swift build -c $CONFIG -Xlinker -L$JVM_LIBRARY_PATH -Xlinker -rpath -Xlinker $JVM_LIBRARY_PATH -ljvm &&
+time $SWIFT_HOME/usr/bin/swift build -c $CONFIG -Xlinker -L$JVM_LIBRARY_PATH -Xlinker -rpath -Xlinker $JVM_LIBRARY_PATH -Xlinker -ljvm &&
 
 ar cr lib$CONFIG.a .build/$CONFIG/*.build/*.o &&
 ranlib lib$CONFIG.a &&
