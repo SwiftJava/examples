@@ -7,7 +7,7 @@ export CONFIG=${1:-debug}
 export XCODE_DEVELOPER=`xcode-select -p`
 export JVM_LIBRARY_PATH=$JAVA_HOME/jre/lib/server
 
-time swift build -c $CONFIG -Xlinker -L$JVM_LIBRARY_PATH -Xlinker -rpath -Xlinker $JVM_LIBRARY_PATH -ljvm &&
+time swift build -c $CONFIG -Xlinker -L$JVM_LIBRARY_PATH -Xlinker -rpath -Xlinker $JVM_LIBRARY_PATH -Xlinker -ljvm &&
 
 ls .build/$CONFIG/*.build/*.o >/tmp/$CONFIG.txt &&
 
