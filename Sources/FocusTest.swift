@@ -19,7 +19,7 @@ public class FocusTest: JFrame {
     public init()
     {
         let frame = JFrame()
-        super.init( javaObject: frame.javaObject )
+        super.init( javaObject: frame.takeJavaObject )
 
         jtf1 = JTextField(10)
         jtf2 = JTextField(10)

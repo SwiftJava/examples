@@ -20,7 +20,7 @@ class PhilosophersJList: JFrame {
     init()
     {
         let frame = try! JFrame("Favorite Philosophers")
-        super.init(javaObject: frame.javaObject)
+        super.init(javaObject: frame.takeJavaObject)
 
         // create a DefaultListModel to store philosophers
         philosophers = DefaultListModel()

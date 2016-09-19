@@ -34,7 +34,7 @@ class MenuDemoGUI: JFrame {
     let m_pasteItem = JMenuItem("Paste")
 
     init() {
-        super.init( javaObject: JFrame().javaObject )
+        super.init( javaObject: JFrame().takeJavaObject )
 
         //... Add listeners to menu items
         m_openItem.addActionListener(OpenAction())

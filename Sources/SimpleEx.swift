@@ -15,7 +15,7 @@ import javax_swing
 public class SimpleEx : JFrame {
 
     public init() {
-        super.init(javaObject:JFrame().javaObject)
+        super.init(javaObject:JFrame().takeJavaObject)
         initUI()
     }
 

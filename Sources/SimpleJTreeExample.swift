@@ -16,7 +16,7 @@ class SimpleJTreeExample: JFrame {
 
     init( _ title: String ) {
         let frame = try! JFrame( title: title )
-        super.init( javaObject: frame.javaObject )
+        super.init( javaObject: frame.takeJavaObject )
         setSize( 150, 150 )
 
         class MyWindowAdapter: WindowAdapterBase {

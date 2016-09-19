@@ -36,7 +36,7 @@ public class TableColumnColor: JFrame
 
     public init()
     {
-        super.init(javaObject:JFrame().javaObject)
+        super.init(javaObject:JFrame().takeJavaObject)
 
         let dtm = DefaultTableModel(data,columnNames)
 

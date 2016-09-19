@@ -50,7 +50,7 @@ public class TableColorSelection: JFrame {
         panel.setLayout(nil)
         _ = panel.add(scroller)
 
-        super.init( javaObject: JFrame().javaObject )
+        super.init( javaObject: JFrame().takeJavaObject )
 
         _ = getContentPane().add(panel);
         setSize(400,400);
@@ -64,7 +64,7 @@ public class TableColorSelection: JFrame {
 
 class MT: JTableBase {
     public init( _ dm: TableModel, _ defaultOffDays: [JavaObject] ) {
-        super.init(javaObject: JTableBase(dm).javaObject)
+        super.init(javaObject: JTableBase(dm).takeJavaObject)
         setDefaultRenderer(JavaObject().getClass(), MyCellRenderer(defaultOffDays))
     }
 
@@ -96,7 +96,7 @@ class MT: JTableBase {
             for i in 0..<defaultOffDays.count {
                 _ = selectedValues.add(defaultOffDays[i])
             }
-            super.init( javaObject: DefaultTableCellRendererBase().javaObject )
+            super.init( javaObject: DefaultTableCellRendererBase().takeJavaObject )
         }
 
         public init( casting object: TableCellRenderer, _ file: StaticString = #file, _ line: Int = #line ) {

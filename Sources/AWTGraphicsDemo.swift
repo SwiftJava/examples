@@ -19,7 +19,7 @@ public class AWTGraphicsDemo: FrameBase {
     }
 
     public init(){
-        super.init( javaObject: FrameBase().javaObject )
+        super.init( javaObject: FrameBase().takeJavaObject )
         prepareGUI()
     }
 
