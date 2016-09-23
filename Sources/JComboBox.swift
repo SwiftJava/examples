@@ -84,7 +84,10 @@ class AutoComplete: JComboBox
 
     init(items: [JavaObject])
     {
-        super.init(javaObject:JComboBox(items).takeJavaObject)
+        super.init(javaObject: nil)
+        withExtendedLifetime(JComboBox(items)) {
+            javaObject = $0.javaObject
+        }
         lap = java_util.Date().getTime()
         setKeySelectionManager(MyJComboBox_KeySelectionManager())
         if(getEditor() != nil)

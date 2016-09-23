@@ -34,8 +34,10 @@ public class PopupTest: JFrame
 
     public init()
     {
-        let frame = try! JFrame("Using JPopupMenus")
-        super.init( javaObject: frame.takeJavaObject )
+        super.init(javaObject: nil)
+        withExtendedLifetime(try! JFrame("Using JPopupMenus")) {
+            javaObject = $0.javaObject
+        }
         popupTest = self
 
         popupMenu = JPopupMenu()

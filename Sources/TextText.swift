@@ -30,7 +30,10 @@ class TextTest: JFrame {
 
     init( _ imagePath: String )
     {
-        super.init(javaObject:JFrame().takeJavaObject)
+        super.init(javaObject: nil)
+        withExtendedLifetime(JFrame()) {
+            javaObject = $0.javaObject
+        }
 
         s = "Hi"
         let f = Font("Serif",Font.BOLD,12)

@@ -15,8 +15,10 @@ import javax_swing
 class SimpleJTreeExample: JFrame {
 
     init( _ title: String ) {
-        let frame = try! JFrame( title: title )
-        super.init( javaObject: frame.takeJavaObject )
+        super.init(javaObject: nil)
+        withExtendedLifetime(try! JFrame( title: title )) {
+            javaObject = $0.javaObject
+        }
         setSize( 150, 150 )
 
         class MyWindowAdapter: WindowAdapterBase {

@@ -15,7 +15,10 @@ import javax_swing
 public class SimpleEx : JFrame {
 
     public init() {
-        super.init(javaObject:JFrame().takeJavaObject)
+        super.init(javaObject: nil)
+        withExtendedLifetime(JFrame()) {
+            javaObject = $0.javaObject
+        }
         initUI()
     }
 

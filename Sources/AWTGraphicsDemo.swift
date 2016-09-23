@@ -19,7 +19,10 @@ public class AWTGraphicsDemo: FrameBase {
     }
 
     public init(){
-        super.init( javaObject: FrameBase().takeJavaObject )
+        super.init(javaObject: nil)
+        withExtendedLifetime(FrameBase()) {
+            javaObject = $0.javaObject
+        }
         prepareGUI()
     }
 
