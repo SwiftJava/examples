@@ -24,8 +24,8 @@ class ImageCanvas: CanvasBase {
 
     init(_ imagePath: String) {
         super.init(javaObject: nil)
-        withExtendedLifetime(CanvasBase()) {
-            javaObject = $0.javaObject
+        CanvasBase().withJavaObject {
+            self.javaObject = $0
         }
         let media = MediaTracker(comp: self)
         image = Toolkit.getDefaultToolkit().getImage(imagePath)
@@ -38,8 +38,8 @@ class ImageCanvas: CanvasBase {
 
     init(imageProducer:ImageProducer) {
         super.init(javaObject: nil)
-        withExtendedLifetime(CanvasBase()) {
-            javaObject = $0.javaObject
+        CanvasBase().withJavaObject {
+            self.javaObject = $0
         }
         image = createImage(imageProducer)
     }

@@ -35,8 +35,8 @@ public class PopupTest: JFrame
     public init()
     {
         super.init(javaObject: nil)
-        withExtendedLifetime(try! JFrame("Using JPopupMenus")) {
-            javaObject = $0.javaObject
+        (try! JFrame("Using JPopupMenus")).withJavaObject {
+            self.javaObject = $0
         }
         popupTest = self
 

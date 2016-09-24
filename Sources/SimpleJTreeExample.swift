@@ -16,8 +16,8 @@ class SimpleJTreeExample: JFrame {
 
     init( _ title: String ) {
         super.init(javaObject: nil)
-        withExtendedLifetime(try! JFrame( title: title )) {
-            javaObject = $0.javaObject
+        (try! JFrame( title: title )).withJavaObject {
+            self.javaObject = $0
         }
         setSize( 150, 150 )
 

@@ -37,17 +37,19 @@ public class TableColumnColor: JFrame
     public init()
     {
         super.init(javaObject: nil)
-        withExtendedLifetime(JFrame()) {
-            javaObject = $0.javaObject
+        JFrame().withJavaObject {
+            self.javaObject = $0
         }
 
         let dtm = DefaultTableModel(data,columnNames)
 
         class MyJTable: JTableBase {
 
-            init( model: TableModel ) {
-                let table = JTableBase(model)
-                super.init( javaObject: table.javaObject )
+            init( _ model: TableModel ) {
+                super.init(javaObject:nil)
+                JTableBase(model).withJavaObject {
+                    self.javaObject = $0
+                }
             }
 
             required init(javaObject: jobject!) {

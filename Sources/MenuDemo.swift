@@ -35,8 +35,8 @@ class MenuDemoGUI: JFrame {
 
     init() {
         super.init(javaObject: nil)
-        withExtendedLifetime(JFrame()) {
-            javaObject = $0.javaObject
+        JFrame().withJavaObject {
+            self.javaObject = $0
         }
 
         //... Add listeners to menu items

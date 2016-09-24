@@ -51,8 +51,8 @@ public class TableColorSelection: JFrame {
         _ = panel.add(scroller)
 
         super.init(javaObject: nil)
-        withExtendedLifetime(JFrame()) {
-            javaObject = $0.javaObject
+        JFrame().withJavaObject {
+            self.javaObject = $0
         }
 
         _ = getContentPane().add(panel);
@@ -67,9 +67,9 @@ public class TableColorSelection: JFrame {
 
 class MT: JTableBase {
     public init( _ dm: TableModel, _ defaultOffDays: [JavaObject] ) {
-        super.init(javaObject: nil)
-        withExtendedLifetime(JTableBase(dm)) {
-            javaObject = $0.javaObject
+        super.init(javaObject:nil)
+        JTableBase(dm).withJavaObject {
+            self.javaObject = $0
         }
         setDefaultRenderer(JavaObject().getClass(), MyCellRenderer(defaultOffDays))
     }
@@ -102,13 +102,17 @@ class MT: JTableBase {
             for i in 0..<defaultOffDays.count {
                 _ = selectedValues.add(defaultOffDays[i])
             }
-            super.init( javaObject: DefaultTableCellRendererBase().takeJavaObject )
+
+            super.init( javaObject: nil )
+            DefaultTableCellRendererBase().withJavaObject {
+                self.javaObject = $0
+            }
         }
 
         public init( casting object: TableCellRenderer, _ file: StaticString = #file, _ line: Int = #line ) {
             super.init( javaObject: nil )
-            withExtendedLifetime(object) {
-                javaObject = $0.javaObject
+            object.withJavaObject {
+                self.javaObject = $0
             }
         }
 

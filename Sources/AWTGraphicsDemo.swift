@@ -20,8 +20,8 @@ public class AWTGraphicsDemo: FrameBase {
 
     public init(){
         super.init(javaObject: nil)
-        withExtendedLifetime(FrameBase()) {
-            javaObject = $0.javaObject
+        FrameBase().withJavaObject {
+            self.javaObject = $0
         }
         prepareGUI()
     }

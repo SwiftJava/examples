@@ -16,8 +16,8 @@ public class SimpleEx : JFrame {
 
     public init() {
         super.init(javaObject: nil)
-        withExtendedLifetime(JFrame()) {
-            javaObject = $0.javaObject
+        JFrame().withJavaObject {
+            self.javaObject = $0
         }
         initUI()
     }

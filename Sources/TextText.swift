@@ -31,8 +31,8 @@ class TextTest: JFrame {
     init( _ imagePath: String )
     {
         super.init(javaObject: nil)
-        withExtendedLifetime(JFrame()) {
-            javaObject = $0.javaObject
+        JFrame().withJavaObject {
+            self.javaObject = $0
         }
 
         s = "Hi"
