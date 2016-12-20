@@ -45,7 +45,7 @@ class PhilosophersJList: JFrame {
         let addButton = JButton( "Add Philosopher" )
 
         class MyActionListener: ActionListenerBase {
-            override func actionPerformed( e: ActionEvent? ) {
+            override func actionPerformed( arg0 e: ActionEvent? ) {
                 // prompt user for new philosopher's name
                 if let name = try! JOptionPane.showInputDialog(
                     /*PhilosophersJList.this,*/ JavaString("Enter Name") ) {
@@ -62,7 +62,7 @@ class PhilosophersJList: JFrame {
         let removeButton = JButton( "Remove Selected Philosopher" )
 
         class MyActionListener2: ActionListenerBase {
-            override func actionPerformed( e: ActionEvent? ) {
+            override func actionPerformed( arg0 e: ActionEvent? ) {
                 // remove selected philosopher from model
                 _ = philosophers.removeElement(
                     list2.getSelectedValue() )

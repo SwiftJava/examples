@@ -44,16 +44,16 @@ class AutoComplete: JComboBox
     private var lap: jlong!
 
     class CBDocument: PlainDocumentBase {
-        override func insertString(offs:Int, str: String? , a: AttributeSet?) throws {
+        override func insertString(arg0 offs:Int, arg1 str: String? , arg2 a: AttributeSet?) throws {
             if (str==nil) { return }
-            try super.insertString(offs:offs, str: str, a: a)
+            try super.insertString(arg0:offs, arg1: str, arg2: a)
             if(!cBox.isPopupVisible() && JavaString(str).length() != 0) { cBox.fireActionEvent() }
         }
     }
 
     class MyJComboBox_KeySelectionManager: JComboBox_KeySelectionManagerBase {
 
-        override func selectionForKey( aKey: UInt16, aModel: ComboBoxModel? ) -> Int {
+        override func selectionForKey( arg0 aKey: UInt16, arg1 aModel: ComboBoxModel? ) -> Int {
             let now = java_util.Date().getTime()
             if ( cBox.searchFor != nil  && aKey == UInt16(KeyEvent.VK_BACK_SPACE) && JavaString(cBox.searchFor).length()>0 )
             {
@@ -98,7 +98,7 @@ class AutoComplete: JComboBox
 
                 class MyActionListener: ActionListenerBase {
 
-                    override func actionPerformed(e: ActionEvent?)
+                    override func actionPerformed(arg0 e: ActionEvent?)
                     {
                         let tf = JTextField(casting: cBox.getEditor().getEditorComponent())!
                         let text = tf.getText()!

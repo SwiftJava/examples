@@ -27,7 +27,7 @@ class ImageCanvas: CanvasBase {
         CanvasBase().withJavaObject {
             self.javaObject = $0
         }
-        let media = MediaTracker(comp: self)
+        let media = MediaTracker(arg0: self)
         image = Toolkit.getDefaultToolkit().getImage(imagePath)
         media.addImage(image, 0)
         do {
@@ -48,7 +48,7 @@ class ImageCanvas: CanvasBase {
         fatalError("init(javaObject:) has not been implemented")
     }
 
-    override func paint( g: Graphics? ) {
+    override func paint( arg0 g: Graphics? ) {
         _ = g?.drawImage(image, 0,0, self)
     }
 

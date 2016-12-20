@@ -16,13 +16,13 @@ class SimpleJTreeExample: JFrame {
 
     init( _ title: String ) {
         super.init(javaObject: nil)
-        (try! JFrame( title: title )).withJavaObject {
+        (try! JFrame( arg0: title )).withJavaObject {
             self.javaObject = $0
         }
         setSize( 150, 150 )
 
         class MyWindowAdapter: WindowAdapterBase {
-            override func windowClosing( e: WindowEvent? ) {
+            override func windowClosing( arg0 e: WindowEvent? ) {
                 //dispose()
                 System.exit( 0 )
             }
@@ -39,7 +39,7 @@ class SimpleJTreeExample: JFrame {
     }
 
     func setup() {
-        let root =  DefaultMutableTreeNode( userObject: JavaString("Calendar") )
+        let root =  DefaultMutableTreeNode( arg0: JavaString("Calendar") )
         let months = DefaultMutableTreeNode( JavaString("Months") )
         root.add( months )
         let monthLabels = ["January", "February", "March", "April", "May",

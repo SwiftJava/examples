@@ -74,14 +74,14 @@ class MenuDemoGUI: JFrame {
 
     //// OpenAction
     class OpenAction: ActionListenerBase {
-        override func actionPerformed(e: ActionEvent?) {
+        override func actionPerformed(arg0 e: ActionEvent?) {
             try! JOptionPane.showMessageDialog(nil, JavaString("Sorry, can't open anything"))
         }
     }
 
     /// QuitAction
     class QuitAction: ActionListenerBase {
-        override func actionPerformed(e: ActionEvent?) {
+        override func actionPerformed(arg0 e: ActionEvent?) {
             System.exit(0)  // terminate this program
         }
     }

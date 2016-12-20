@@ -127,7 +127,7 @@ JNI.background {
     let app = PopupTest()
 
     class MyWindowAdapter: WindowAdapterBase {
-        override func windowClosing( e: WindowEvent? )
+        override func windowClosing( arg0 e: WindowEvent? )
         {
             System.exit( 0 )
         }

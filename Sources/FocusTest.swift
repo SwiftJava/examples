@@ -54,7 +54,7 @@ public class FocusTest: JFrame {
             fatalError("init(javaObject:) has not been implemented")
         }
 
-        internal override func keyPressed(e: KeyEvent?)
+        internal override func keyPressed(arg0 e: KeyEvent?)
         {
             if(e?.getKeyCode() == KeyEvent.VK_ENTER)
             {

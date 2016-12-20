@@ -33,7 +33,7 @@ public class AWTGraphicsDemo: FrameBase {
     private func prepareGUI(){
         setSize(400,400)
         class MyWindowAdapter: WindowAdapterBase {
-            override func windowClosing( e: WindowEvent? ) {
+            override func windowClosing( arg0 e: WindowEvent? ) {
                 System.exit( 0 )
             }
         }

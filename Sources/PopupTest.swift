@@ -21,7 +21,7 @@ public class PopupTest: JFrame
         let app = PopupTest()
 
         class MyWindowAdapter: WindowAdapterBase {
-            override func windowClosing( e: WindowEvent? )
+            override func windowClosing( arg0 e: WindowEvent? )
             {
                 System.exit( 0 )
             }
@@ -62,12 +62,12 @@ public class PopupTest: JFrame
         // a JPopupMenu when the popup trigger event occurs
 
         class MyMouseAdapter: MouseAdapterBase {
-            override func mousePressed( e: MouseEvent? )
+            override func mousePressed( arg0 e: MouseEvent? )
             {
                 checkForTriggerEvent( e )
             }
 
-            override func mouseReleased( e: MouseEvent? )
+            override func mouseReleased( arg0 e: MouseEvent? )
             {
                 checkForTriggerEvent( e )
             }
@@ -91,7 +91,7 @@ public class PopupTest: JFrame
 
     private class ItemHandler: ActionListenerBase
     {
-        override func actionPerformed( e: ActionEvent? )
+        override func actionPerformed( arg0 e: ActionEvent? )
         {
             var colorValues = [Color.blue, Color.yellow, Color.red]
 

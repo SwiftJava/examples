@@ -40,7 +40,7 @@ class TextTest: JFrame {
         text = JLabel("Hi")
         text.setFont(f)
 
-        let mt = MediaTracker(comp: self)
+        let mt = MediaTracker(arg0: self)
         image = Toolkit.getDefaultToolkit().createImage(imagePath)
         mt.addImage(image,0)
         do { try mt.waitForID(0) }

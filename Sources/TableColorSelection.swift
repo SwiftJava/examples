@@ -25,7 +25,7 @@ public class TableColorSelection: JFrame {
 
     public init() {
         class MyDefaultTableModel: DefaultTableModelBase {
-            override public func isCellEditable(row: Int, column: Int) -> Bool {
+            override public func isCellEditable(arg0: Int, arg1: Int) -> Bool {
                 return false;
             }
         }
@@ -78,8 +78,8 @@ class MT: JTableBase {
         fatalError("init(javaObject:) has not been implemented")
     }
 
-    override public func changeSelection( arg0: Int, arg1: Int, arg2: Bool, arg3: Bool ) {
-        let r = arg0, c = arg1, toggle = arg2, extend = arg3
+    override public func changeSelection( arg0 arg1: Int, arg1 arg2: Int, arg2 arg3: Bool, arg3 arg4: Bool ) {
+        let r = arg1, c = arg2, toggle = arg3, extend = arg4
         super.changeSelection(arg0: r, arg1: c, arg2: toggle, arg3: extend)
 
         let renderer = MyCellRenderer(casting: getDefaultRenderer(JavaObject().getClass()))
@@ -120,11 +120,11 @@ class MT: JTableBase {
             fatalError("init(javaObject:) has not been implemented")
         }
 
-        override public func getTableCellRendererComponent( table: JTable?, value: JavaObject?,
-                                                   isSelected: Bool, hasFocus: Bool,
-                                                   row: Int, column: Int ) -> Component {
-            let label = JLabel(casting: super.getTableCellRendererComponent(table: table, value: value, isSelected: isSelected,
-                                                                            hasFocus: hasFocus, row: row, column: column) )
+        override public func getTableCellRendererComponent( arg0 table: JTable?, arg1 value: JavaObject?,
+                                                            arg2 isSelected: Bool, arg3 hasFocus: Bool,
+                                                            arg4 row: Int, arg5 column: Int ) -> Component {
+            let label = JLabel(casting: super.getTableCellRendererComponent(arg0: table, arg1: value, arg2: isSelected,
+                                                                            arg3: hasFocus, arg4: row, arg5: column) )
 
             setHorizontalAlignment(javax_swing.SwingConstantsForward.CENTER);
             setText(value?.toString());

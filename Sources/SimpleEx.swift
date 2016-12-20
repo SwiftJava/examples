@@ -31,7 +31,7 @@ public class SimpleEx : JFrame {
         let quitButton = JButton("Quit")
 
         class MyActionListener: ActionListenerBase {
-            override func actionPerformed(e event: ActionEvent?) {
+            override func actionPerformed(arg0 event: ActionEvent?) {
                 System.exit(0)
             }
         }
@@ -49,7 +49,7 @@ public class SimpleEx : JFrame {
     func createLayout(_ arg: JComponent) {
 
         let pane = getContentPane()!
-        let gl = GroupLayout(host: pane)
+        let gl = GroupLayout(arg0: pane)
         pane.setLayout(gl)
 
         gl.setAutoCreateContainerGaps(true)
