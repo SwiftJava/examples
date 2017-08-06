@@ -23,7 +23,7 @@ public class MenuDemo {
 
 
 ///// MenuDemoGUI
-class MenuDemoGUI: JFrame {
+class MenuDemoGUI: JFrameBase {
 
     let m_editArea = JTextArea(20, 50)
     let m_fileMenu = JMenu("File")// declare and create new menu
@@ -35,9 +35,7 @@ class MenuDemoGUI: JFrame {
 
     init() {
         super.init(javaObject: nil)
-        JFrame().withJavaObject {
-            self.javaObject = $0
-        }
+        inherit(JFrameBase())
 
         //... Add listeners to menu items
         m_openItem.addActionListener(OpenAction())
@@ -74,14 +72,14 @@ class MenuDemoGUI: JFrame {
 
     //// OpenAction
     class OpenAction: ActionListenerBase {
-        override func actionPerformed(arg0 e: ActionEvent?) {
+        override func actionPerformed(e: ActionEvent?) {
             try! JOptionPane.showMessageDialog(nil, JavaString("Sorry, can't open anything"))
         }
     }
 
     /// QuitAction
     class QuitAction: ActionListenerBase {
-        override func actionPerformed(arg0 e: ActionEvent?) {
+        override func actionPerformed(e: ActionEvent?) {
             System.exit(0)  // terminate this program
         }
     }

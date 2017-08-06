@@ -15,14 +15,12 @@ import javax_swing
 var philosophers: DefaultListModel!
 var list2: JList!
 
-class PhilosophersJList: JFrame {
+class PhilosophersJList: JFrameBase {
 
     init()
     {
         super.init(javaObject: nil)
-        (try! JFrame("Favorite Philosophers")).withJavaObject {
-            self.javaObject = $0
-        }
+        inherit(try! JFrameBase("Favorite Philosophers"))
 
         // create a DefaultListModel to store philosophers
         philosophers = DefaultListModel()
@@ -36,7 +34,7 @@ class PhilosophersJList: JFrame {
         philosophers.addElement( JavaString("Hannah Arendt") )
 
         // create a JList for philosophers DefaultListModel
-        list2 = JList( philosophers )
+        list2 = JList( dataModel: philosophers)
 
         // allow user to select only one philosopher at a time
         //list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION )
@@ -45,7 +43,7 @@ class PhilosophersJList: JFrame {
         let addButton = JButton( "Add Philosopher" )
 
         class MyActionListener: ActionListenerBase {
-            override func actionPerformed( arg0 e: ActionEvent? ) {
+            override func actionPerformed( e: ActionEvent? ) {
                 // prompt user for new philosopher's name
                 if let name = try! JOptionPane.showInputDialog(
                     /*PhilosophersJList.this,*/ JavaString("Enter Name") ) {
@@ -62,7 +60,7 @@ class PhilosophersJList: JFrame {
         let removeButton = JButton( "Remove Selected Philosopher" )
 
         class MyActionListener2: ActionListenerBase {
-            override func actionPerformed( arg0 e: ActionEvent? ) {
+            override func actionPerformed( e: ActionEvent? ) {
                 // remove selected philosopher from model
                 _ = philosophers.removeElement(
                     list2.getSelectedValue() )

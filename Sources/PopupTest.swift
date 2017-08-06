@@ -14,14 +14,14 @@ import javax_swing
 
 var popupTest: PopupTest!
 
-public class PopupTest: JFrame
+public class PopupTest: JFrameBase
 {
     public static func main()
     {
         let app = PopupTest()
 
         class MyWindowAdapter: WindowAdapterBase {
-            override func windowClosing( arg0 e: WindowEvent? )
+            override func windowClosing( e: WindowEvent? )
             {
                 System.exit( 0 )
             }
@@ -35,9 +35,7 @@ public class PopupTest: JFrame
     public init()
     {
         super.init(javaObject: nil)
-        (try! JFrame("Using JPopupMenus")).withJavaObject {
-            self.javaObject = $0
-        }
+        inherit(try! JFrameBase("Using JPopupMenus"))
         popupTest = self
 
         popupMenu = JPopupMenu()
@@ -62,12 +60,12 @@ public class PopupTest: JFrame
         // a JPopupMenu when the popup trigger event occurs
 
         class MyMouseAdapter: MouseAdapterBase {
-            override func mousePressed( arg0 e: MouseEvent? )
+            override func mousePressed( e: MouseEvent? )
             {
                 checkForTriggerEvent( e )
             }
 
-            override func mouseReleased( arg0 e: MouseEvent? )
+            override func mouseReleased( e: MouseEvent? )
             {
                 checkForTriggerEvent( e )
             }
@@ -91,7 +89,7 @@ public class PopupTest: JFrame
 
     private class ItemHandler: ActionListenerBase
     {
-        override func actionPerformed( arg0 e: ActionEvent? )
+        override func actionPerformed( e: ActionEvent? )
         {
             var colorValues = [Color.blue, Color.yellow, Color.red]
 

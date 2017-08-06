@@ -16,7 +16,7 @@ func objectArray( _ stringArray: [String] ) -> [JavaObject] {
     return stringArray.map { JavaString($0) }
 }
 
-public class TableColumnColor: JFrame
+public class TableColumnColor: JFrameBase
 {
     static var tes: TableColumnColor!
 
@@ -37,19 +37,16 @@ public class TableColumnColor: JFrame
     public init()
     {
         super.init(javaObject: nil)
-        JFrame().withJavaObject {
-            self.javaObject = $0
-        }
+        inherit(JFrameBase())
 
         let dtm = DefaultTableModel(data,columnNames)
 
         class MyJTable: JTableBase {
 
             init( _ model: TableModel ) {
+//                super.init(model)
                 super.init(javaObject:nil)
-                JTableBase(model).withJavaObject {
-                    self.javaObject = $0
-                }
+                inherit(JTableBase(model))
             }
 
             required init(javaObject: jobject!) {

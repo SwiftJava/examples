@@ -12,13 +12,11 @@ import java_lang
 import java_awt
 import javax_swing
 
-public class SimpleEx : JFrame {
+public class SimpleEx : JFrameBase {
 
     public init() {
         super.init(javaObject: nil)
-        JFrame().withJavaObject {
-            self.javaObject = $0
-        }
+        inherit(JFrameBase())
         initUI()
     }
 
@@ -31,7 +29,7 @@ public class SimpleEx : JFrame {
         let quitButton = JButton("Quit")
 
         class MyActionListener: ActionListenerBase {
-            override func actionPerformed(arg0 event: ActionEvent?) {
+            override func actionPerformed(e: ActionEvent?) {
                 System.exit(0)
             }
         }
@@ -49,7 +47,7 @@ public class SimpleEx : JFrame {
     func createLayout(_ arg: JComponent) {
 
         let pane = getContentPane()!
-        let gl = GroupLayout(arg0: pane)
+        let gl = GroupLayout(host: pane)
         pane.setLayout(gl)
 
         gl.setAutoCreateContainerGaps(true)

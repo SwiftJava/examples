@@ -15,7 +15,7 @@ import javax_swing
 
 private var table: JTable!
 
-public class TableColorSelection: JFrame {
+public class TableColorSelection: JFrameBase {
     let columns = ["mon","tue","wed"].map { JavaString($0) }
     static public let givenColor = Color(255,128,54)
 
@@ -25,7 +25,7 @@ public class TableColorSelection: JFrame {
 
     public init() {
         class MyDefaultTableModel: DefaultTableModelBase {
-            override public func isCellEditable(arg0: Int, arg1: Int) -> Bool {
+            override public func isCellEditable(row: Int, column: Int) -> Bool {
                 return false;
             }
         }
@@ -51,10 +51,8 @@ public class TableColorSelection: JFrame {
         _ = panel.add(scroller)
 
         super.init(javaObject: nil)
-        JFrame().withJavaObject {
-            self.javaObject = $0
-        }
-
+        inherit(JFrameBase())
+        
         _ = getContentPane().add(panel);
         setSize(400,400);
         setVisible(true);
@@ -68,9 +66,7 @@ public class TableColorSelection: JFrame {
 class MT: JTableBase {
     public init( _ dm: TableModel, _ defaultOffDays: [JavaObject] ) {
         super.init(javaObject:nil)
-        JTableBase(dm).withJavaObject {
-            self.javaObject = $0
-        }
+        inherit(JTableBase(dm))
         setDefaultRenderer(JavaObject().getClass(), MyCellRenderer(defaultOffDays))
     }
 
@@ -104,27 +100,23 @@ class MT: JTableBase {
             }
 
             super.init( javaObject: nil )
-            DefaultTableCellRendererBase().withJavaObject {
-                self.javaObject = $0
-            }
+            inherit(DefaultTableCellRendererBase())
         }
 
         public init( casting object: TableCellRenderer, _ file: StaticString = #file, _ line: Int = #line ) {
             super.init( javaObject: nil )
-            object.withJavaObject {
-                self.javaObject = $0
-            }
+            inherit(object)
         }
 
         required init(javaObject: jobject?) {
             fatalError("init(javaObject:) has not been implemented")
         }
 
-        override public func getTableCellRendererComponent( arg0 table: JTable?, arg1 value: JavaObject?,
-                                                            arg2 isSelected: Bool, arg3 hasFocus: Bool,
-                                                            arg4 row: Int, arg5 column: Int ) -> Component {
-            let label = JLabel(casting: super.getTableCellRendererComponent(arg0: table, arg1: value, arg2: isSelected,
-                                                                            arg3: hasFocus, arg4: row, arg5: column) )
+        override public func getTableCellRendererComponent(  table: JTable?,  value: JavaObject?,
+                                                             isSelected: Bool,  hasFocus: Bool,
+                                                             row: Int,  column: Int ) -> Component {
+            let label = JLabel(casting: super.getTableCellRendererComponent(table: table, value: value, isSelected: isSelected,
+                                                                            hasFocus: hasFocus, row: row, column: column) )
 
             setHorizontalAlignment(javax_swing.SwingConstantsForward.CENTER);
             setText(value?.toString());

@@ -12,7 +12,7 @@ import java_lang
 import java_awt
 import javax_swing
 
-class TextTest: JFrame {
+class TextTest: JFrameBase {
 
     static func main() {
         let tt = TextTest(imagePath)
@@ -31,16 +31,14 @@ class TextTest: JFrame {
     init( _ imagePath: String )
     {
         super.init(javaObject: nil)
-        JFrame().withJavaObject {
-            self.javaObject = $0
-        }
+        inherit(JFrameBase())
 
         s = "Hi"
         let f = Font("Serif",Font.BOLD,12)
         text = JLabel("Hi")
         text.setFont(f)
 
-        let mt = MediaTracker(arg0: self)
+        let mt = MediaTracker(comp: self)
         image = Toolkit.getDefaultToolkit().createImage(imagePath)
         mt.addImage(image,0)
         do { try mt.waitForID(0) }
@@ -57,7 +55,7 @@ class TextTest: JFrame {
         bimg.getGraphics().drawString(s,250,100)
 
         img = ImageIcon(bimg)
-        label = JLabel(img)
+        label = JLabel(image: img)
         p = JPanel()
         _ = p.add(label)
         _ = getContentPane().add(p)

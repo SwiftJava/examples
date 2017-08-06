@@ -24,10 +24,8 @@ class ImageCanvas: CanvasBase {
 
     init(_ imagePath: String) {
         super.init(javaObject: nil)
-        CanvasBase().withJavaObject {
-            self.javaObject = $0
-        }
-        let media = MediaTracker(arg0: self)
+        inherit(CanvasBase())
+        let media = MediaTracker(comp: self)
         image = Toolkit.getDefaultToolkit().getImage(imagePath)
         media.addImage(image, 0)
         do {
@@ -38,9 +36,7 @@ class ImageCanvas: CanvasBase {
 
     init(imageProducer:ImageProducer) {
         super.init(javaObject: nil)
-        CanvasBase().withJavaObject {
-            self.javaObject = $0
-        }
+        inherit(CanvasBase())
         image = createImage(imageProducer)
     }
 
@@ -48,7 +44,7 @@ class ImageCanvas: CanvasBase {
         fatalError("init(javaObject:) has not been implemented")
     }
 
-    override func paint( arg0 g: Graphics? ) {
+    override func paint( g: Graphics? ) {
         _ = g?.drawImage(image, 0,0, self)
     }
 

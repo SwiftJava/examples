@@ -19,51 +19,51 @@ print( e.javaObject )
 print( ClassNotFoundException(casting: e) )
 print( Throwable(casting: e) )
 print( Exception(casting: e) )
-print( Class(casting: e) )
+print( JavaClass(casting: e) )
 print( System.getenv("HOME"))
-print( System.getProperty("java.class.path"))
-print( System.getProperty("java.version"))
-print( System.getProperty("java.vendor"))
-print( System.getProperty("java.home"))
+print( System.getProperty("java.class.path") )
+print( System.getProperty("java.version") )
+print( System.getProperty("java.vendor") )
+print( System.getProperty("java.home") )
 print( "\(System.getProperty("xx"))" )
 
-let imagePath = String( cString: getenv("HOME") )+"/Untitled.png"
+let imagePath = System.getProperty("user.home")+"/Untitled.png"
 
-//JNI.background {
-//    let f = try! Frame( "Hello World" )
-//
-//    class MyWidowListener: WindowListenerBase {
-//        override func windowClosing( e: WindowEvent? ) {
-//            Runtime.getRuntime().exit(0)
-//        }
-//    }
-//
-//    f.addWindowListener(MyWidowListener())
-//
-//    let b = try! Button.new("click me")!
-//    b.setBounds(30,50,80,30)
-//
-//    class MyActionListener: ActionListenerBase {
-//        override func actionPerformed(_ e:ActionEvent?) {
-//            print("here!")
-//        }
-//    }
-//
-//    b.addActionListener( MyActionListener() )
-//
-//    _ = f.add(b)
-//    f.setSize(300,300)
-//
-//    f.setLayout( nil )
-//    f.setVisible(true)
-//}
+JNI.background {
+    let f = try! Frame( "Hello World" )
+
+    class MyWidowListener: WindowListenerBase {
+        override func windowClosing( e: WindowEvent? ) {
+            Runtime.getRuntime().exit(0)
+        }
+    }
+
+    f.addWindowListener(MyWidowListener())
+
+    let b = try! Button("click me")
+    b.setBounds(30,50,80,30)
+
+    class MyActionListener: ActionListenerBase {
+        override func actionPerformed(_ e:ActionEvent?) {
+            print("here!")
+        }
+    }
+
+    b.addActionListener( MyActionListener() )
+
+    _ = f.add(b)
+    f.setSize(300,300)
+
+    f.setLayout( nil )
+    f.setVisible(true)
+}
 
 JNI.background {
     let myExample = SimpleJTreeExample( "Simple JTree Example" )
 }
 
 JNI.background {
-    let frame = try! Frame("Image")
+    let frame = try! Frame("ImageCanvas")
     frame.setLayout(BorderLayout())
     _ = frame.add("Center", ImageCanvas(imagePath))
     frame.resize(400,400)
@@ -127,7 +127,7 @@ JNI.background {
     let app = PopupTest()
 
     class MyWindowAdapter: WindowAdapterBase {
-        override func windowClosing( arg0 e: WindowEvent? )
+        override func windowClosing( e: WindowEvent? )
         {
             System.exit( 0 )
         }
@@ -144,9 +144,9 @@ JNI.background {
     _ = TableColorSelection()
 }
 
-JNI.background {
-    sleep(5)
-    System.gc()
-}
+//JNI.background {
+//    sleep(5)
+//    System.gc()
+//}
 
 JNI.run()

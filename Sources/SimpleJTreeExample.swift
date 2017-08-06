@@ -12,22 +12,20 @@ import java_lang
 import java_awt
 import javax_swing
 
-class SimpleJTreeExample: JFrame {
+class SimpleJTreeExample: JFrameBase {
 
     init( _ title: String ) {
         super.init(javaObject: nil)
-        (try! JFrame( arg0: title )).withJavaObject {
-            self.javaObject = $0
-        }
+        inherit(try! JFrameBase( title: title ))
         setSize( 150, 150 )
 
         class MyWindowAdapter: WindowAdapterBase {
-            override func windowClosing( arg0 e: WindowEvent? ) {
+            override func windowClosing( e: WindowEvent? ) {
                 //dispose()
                 System.exit( 0 )
             }
         }
-        addWindowListener( MyWindowAdapter() )
+//        addWindowListener( MyWindowAdapter() as? WindowListener )
 
         setup()
         pack()
@@ -39,7 +37,7 @@ class SimpleJTreeExample: JFrame {
     }
 
     func setup() {
-        let root =  DefaultMutableTreeNode( arg0: JavaString("Calendar") )
+        let root =  DefaultMutableTreeNode( userObject: JavaString("Calendar") )
         let months = DefaultMutableTreeNode( JavaString("Months") )
         root.add( months )
         let monthLabels = ["January", "February", "March", "April", "May",
@@ -54,7 +52,7 @@ class SimpleJTreeExample: JFrame {
         for i in 0..<weekLabels.count {
             weeks.add( DefaultMutableTreeNode( JavaString(weekLabels[i]) ) )
         }
-        let js = JScrollPane( JTree( root ) )
+        let js = JScrollPane( view: JTree( root: root ) )
         _ = getContentPane().add( js )
     }
 }

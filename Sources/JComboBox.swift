@@ -44,16 +44,16 @@ class AutoComplete: JComboBox
     private var lap: jlong!
 
     class CBDocument: PlainDocumentBase {
-        override func insertString(arg0 offs:Int, arg1 str: String? , arg2 a: AttributeSet?) throws {
+        override func insertString( offs:Int,  str: String? ,  a: AttributeSet?) throws {
             if (str==nil) { return }
-            try super.insertString(arg0:offs, arg1: str, arg2: a)
+            try super.insertString(offs:offs, str: str, a: a)
             if(!cBox.isPopupVisible() && JavaString(str).length() != 0) { cBox.fireActionEvent() }
         }
     }
 
     class MyJComboBox_KeySelectionManager: JComboBox_KeySelectionManagerBase {
 
-        override func selectionForKey( arg0 aKey: UInt16, arg1 aModel: ComboBoxModel? ) -> Int {
+        override func selectionForKey(  aKey: UInt16,  aModel: ComboBoxModel? ) -> Int {
             let now = java_util.Date().getTime()
             if ( cBox.searchFor != nil  && aKey == UInt16(KeyEvent.VK_BACK_SPACE) && JavaString(cBox.searchFor).length()>0 )
             {
@@ -74,7 +74,7 @@ class AutoComplete: JComboBox
             var current: String!
             for i in 0..<aModel!.getSize()
             {
-                current = JavaString(aModel!.getElementAt(i).toString()).toLowerCase()
+                current = JavaString(aModel!.getElementAt(index: i).toString()).toLowerCase()
                 if (JavaString(JavaString(current).toLowerCase()).startsWith(JavaString(cBox.searchFor).toLowerCase())) { return i }
             }
             return -1
@@ -94,11 +94,11 @@ class AutoComplete: JComboBox
         {
             if let tf = JTextField(casting: getEditor().getEditorComponent())
             {
-                tf.setDocument( CBDocument())
+                tf.setDocument( CBDocument() )
 
                 class MyActionListener: ActionListenerBase {
 
-                    override func actionPerformed(arg0 e: ActionEvent?)
+                    override func actionPerformed(e: ActionEvent?)
                     {
                         let tf = JTextField(casting: cBox.getEditor().getEditorComponent())!
                         let text = tf.getText()!
@@ -106,7 +106,7 @@ class AutoComplete: JComboBox
                         var current: String
                         for i  in 0..<aModel.getSize()
                         {
-                            current = aModel.getElementAt(i).toString()
+                            current = aModel.getElementAt(index: i).toString()
                             if(JavaString(JavaString(current).toLowerCase()).startsWith(JavaString(text).toLowerCase()))
                             {
                                 tf.setText(current)

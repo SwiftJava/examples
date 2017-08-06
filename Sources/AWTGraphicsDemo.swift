@@ -20,9 +20,7 @@ public class AWTGraphicsDemo: FrameBase {
 
     public init(){
         super.init(javaObject: nil)
-        FrameBase().withJavaObject {
-            self.javaObject = $0
-        }
+        inherit(try! FrameBase("AWTGraphicsDemo"))
         prepareGUI()
     }
 
@@ -33,7 +31,7 @@ public class AWTGraphicsDemo: FrameBase {
     private func prepareGUI(){
         setSize(400,400)
         class MyWindowAdapter: WindowAdapterBase {
-            override func windowClosing( arg0 e: WindowEvent? ) {
+            override func windowClosing( e: WindowEvent? ) {
                 System.exit( 0 )
             }
         }
