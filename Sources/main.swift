@@ -44,7 +44,7 @@ JNI.background {
     b.setBounds(30,50,80,30)
 
     class MyActionListener: ActionListenerBase {
-        override func actionPerformed(_ e:ActionEvent?) {
+        override func actionPerformed( e:ActionEvent?) {
             print("here!")
         }
     }
