@@ -1,26 +1,25 @@
 //
 //  main.swift
-//  awt2
+//  examples
 //
 //  Created by John Holdsworth on 20/07/2016.
 //  Copyright (c) 2016 John Holdsworth. All rights reserved.
 //
 
-import Foundation
 import java_lang
 import java_util
 import java_awt
 import javax_swing
 
-print( Runtime.getRuntime().javaObject )
-print( Runtime.getRuntime().maxMemory() )
+print( String(describing: Runtime.getRuntime().javaObject) )
+print( String(describing: Runtime.getRuntime().maxMemory()) )
 let e = java_lang.Exception("JKKH")
-print( e.javaObject )
-print( ClassNotFoundException(casting: e) )
-print( Throwable(casting: e) )
-print( Exception(casting: e) )
-print( JavaClass(casting: e) )
-print( System.getenv("HOME"))
+print( String(describing: e.javaObject) )
+print( String(describing: ClassNotFoundException(casting: e)) )
+print( String(describing: Throwable(casting: e)) )
+print( String(describing: Exception(casting: e)) )
+print( String(describing: JavaClass(casting: e)) )
+print( String(describing: System.getenv("HOME")) )
 print( System.getProperty("java.class.path") )
 print( System.getProperty("java.version") )
 print( System.getProperty("java.vendor") )
@@ -59,7 +58,7 @@ JNI.background {
 }
 
 JNI.background {
-    let myExample = SimpleJTreeExample( "Simple JTree Example" )
+    _ = SimpleJTreeExample( "Simple JTree Example" )
 }
 
 JNI.background {
@@ -76,7 +75,7 @@ Thread( {
 } ).start()
 
 JNI.background {
-    let philosophersFrame = PhilosophersJList()
+    _ = PhilosophersJList()
 }
 
 JNI.background {
@@ -101,7 +100,7 @@ JNI.background {
     f.setSize(200,300)
     let cp = f.getContentPane()!
     cp.setLayout(nil)
-    //        let names = ["Beate", "Claudia", "Fjodor", "Fred", "Friedrich",	"Fritz", "Frodo", "Hermann", "Willi"]
+    //        let names = ["Beate", "Claudia", "Fjodor", "Fred", "Friedrich",    "Fritz", "Frodo", "Hermann", "Willi"]
     //        cBox = AutoComplete(items: names.map { JavaString( $0 ) })
     let locales = JavaLocale.getAvailableLocales()!//
     cBox = AutoComplete(items: locales)

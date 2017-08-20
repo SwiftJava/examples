@@ -63,7 +63,7 @@ class AutoComplete: JComboBox
             {
                 //	System.out.println(lap)
                 // Kam nie hier vorbei.
-                if(cBox.lap + 1000 < now) {
+                if(Int64(cBox.lap) + 1000 < now) {
                     cBox.searchFor = "" + aKey
                 }
                 else {
