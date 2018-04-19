@@ -69,7 +69,7 @@ JNI.background {
     frame.show()
 }
 
-Thread( {
+JavaThread( {
     let ex = SimpleEx()
     ex.setVisible(true)
 } ).start()
