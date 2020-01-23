@@ -91,7 +91,7 @@ public class PopupTest: JFrameBase
     {
         override func actionPerformed( e: ActionEvent? )
         {
-            var colorValues = [Color.blue, Color.yellow, Color.red]
+            let colorValues = [Color.blue, Color.yellow, Color.red]
 
             // determine which menu item was selected
             for i in 0..<popupTest.items.count {
